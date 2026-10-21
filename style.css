@@ -13,7 +13,7 @@
     --sky-blue: #86b9d1;
     --sun: #f3c95b;
     --wedge: var(--green);
-    --font: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    --font: 'Archivo', Arial, 'Helvetica Neue', Helvetica, sans-serif;
     --pixel: 'Pixelify Sans', sans-serif;
 }
 
@@ -425,4 +425,29 @@ ul.manu li.active button { color: #fff; }
 .sound-name > span:first-child {
     font-family: var(--font);
     font-weight: 700;
+}
+
+
+/* Modern bold app typography; top menu intentionally keeps Pixelify Sans. */
+body {
+    font-family: var(--font);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+h1, h2, h3,
+.digital-time,
+.stopwatch-time,
+.timer-display,
+.clock-number,
+.btn,
+button:not(ul.manu button) {
+    font-family: var(--font);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+}
+
+ul.manu button {
+    font-family: var(--pixel);
+    letter-spacing: normal;
 }
