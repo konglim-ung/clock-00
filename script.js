@@ -46,16 +46,25 @@ function buildDial(svg, { labels, caption, clockHands = false }) {
     }</text>`;
 
     if (clockHands) {
-        // Hands first, then the knob, then numbers and the city name on top so they stay readable
-        s += '<line class="hand hand-hour" x1="200" y1="200" x2="200" y2="130"/>';
-        s += '<line class="hand hand-min" x1="200" y1="200" x2="200" y2="86"/>';
-        s += '<line class="hand hand-sec" x1="200" y1="214" x2="200" y2="84"/>';
-        s += '<circle class="knob" cx="200" cy="200" r="26"/><circle class="knob-dot" cx="200" cy="200" r="4"/>';
-        for (let h = 1; h <= 12; h++) {
-            const [x, y] = polar(145, h * 30);
-            s += `<text class="num hour" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central">${h}</text>`;
-        }
-        s += captionSvg;
+    // Draw the numbers first.
+    for (let h = 1; h <= 12; h++) {
+        const [x, y] = polar(145, h * 30);
+
+        s += `<text class="num hour" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central">${h}</text>`;
+    }
+
+    // Draw Phnom Penh behind the clock hands.
+    s += captionSvg;
+
+    // Draw the clock hands above the numbers and Phnom Penh.
+    s += '<line class="hand hand-hour" x1="200" y1="200" x2="200" y2="130"/>';
+    s += '<line class="hand hand-min" x1="200" y1="200" x2="200" y2="86"/>';
+    s += '<line class="hand hand-sec" x1="200" y1="214" x2="200" y2="84"/>';
+
+    // Draw the center knob last so it stays above the hands.
+    s += '<circle class="knob" cx="200" cy="200" r="26"/>';
+    s += '<circle class="knob-dot" cx="200" cy="200" r="4"/>';
+        
     } else {
         for (let m = 0; m < 60; m += 5) {
             const [x, y] = polar(142, m * 6);
