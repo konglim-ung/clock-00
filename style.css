@@ -13,7 +13,7 @@
     --sky-blue: #86b9d1;
     --sun: #f3c95b;
     --wedge: var(--green);
-    --font: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     --pixel: 'Pixelify Sans', sans-serif;
 }
 
@@ -183,9 +183,10 @@ ul.manu li.active button { color: #fff; }
 .note { font-size: 15px; line-height: 1.4; }
 
 .readout {
+    font-family: var(--font);
     font-size: clamp(54px, 11vw, 96px);
-    font-weight: 600;
-    letter-spacing: -.02em;
+    font-weight: 700;
+    letter-spacing: -.06em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
@@ -199,9 +200,10 @@ ul.manu li.active button { color: #fff; }
 
 .phase h2 {
     margin: 0;
+    font-family: var(--font);
     font-size: clamp(30px, 5vw, 40px);
-    font-weight: 600;
-    letter-spacing: 0;
+    font-weight: 700;
+    letter-spacing: -.04em;
     line-height: 1.05;
 }
 .phase p { font-size: 18px; margin-top: 4px; }
@@ -218,8 +220,8 @@ ul.manu li.active button { color: #fff; }
     background: rgba(255,255,255,.85);
     color: var(--ink);
     font-size: 17px;
-    font-weight: 600;
-    letter-spacing: 0;
+    font-weight: 700;
+    letter-spacing: -.03em;
     cursor: pointer;
     transition: background .2s, transform .1s, border-color .2s;
 }
@@ -265,7 +267,7 @@ ul.manu li.active button { color: #fff; }
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
-.card-title { margin: 0 0 12px; font-size: 20px; font-weight: 600; letter-spacing: 0; }
+.card-title { margin: 0 0 12px; font-size: 20px; font-weight: 700; letter-spacing: -.03em; }
 
 .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .chip {
@@ -283,24 +285,8 @@ ul.manu li.active button { color: #fff; }
 }
 .chip.on { background: var(--green-deep); border-color: var(--green-deep); color: #fff; }
 
-.fields {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-    align-items: stretch;
-}
-.fields label {
-    display: grid;
-    grid-template-rows: minmax(32px, auto) 48px;
-    gap: 6px;
-    align-items: end;
-    min-width: 0;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: var(--ink-soft);
-    letter-spacing: 0;
-}
+.fields { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.fields label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0; }
 .fields input {
     width: 100%;
     height: 48px;
@@ -419,3 +405,24 @@ ul.manu li.active button { color: #fff; }
     font-weight: 600;
 }
 .ringing { animation: none; }
+
+
+/* ---------- Modern bold font refinements ---------- */
+.eyebrow,
+.date,
+.note,
+.hint,
+.fields label,
+.check,
+.row label {
+    letter-spacing: -0.01em;
+}
+
+.phase h2,
+.card-title,
+.btn,
+.chip,
+.sound-name > span:first-child {
+    font-family: var(--font);
+    font-weight: 700;
+}
