@@ -410,6 +410,32 @@ async function addSound(file) {
     say(`${file.name} is ready and selected.`);
 }
 
+async function removeSound(id) {
+    const rec = sounds.find(s => s.id === id);
+    if (!rec) return;
+
+    if (playingId === id || cfg.soundId === id) stopSound();
+
+    sounds = sounds.filter(s => s.id !== id);
+    if (urlCache[id]) {
+        URL.revokeObjectURL(urlCache[id]);
+        delete urlCache[id];
+    }
+
+    if (dbOK) {
+        try {
+            await dbRun('readwrite', store => store.delete(id));
+        } catch {
+            dbOK = false;
+        }
+    }
+
+    if (cfg.soundId === id) cfg.soundId = 'builtin';
+    saveCfg();
+    renderSounds();
+    say(`${rec.name} was removed.`);
+}
+
 function renderSounds() {
     snd.list.innerHTML = '';
     const rows = [{ id: 'builtin', name: 'Soft chime', sub: 'Built in' },
